@@ -265,6 +265,7 @@ public class ForecastFragment extends Fragment {
             String format = "json";
             String units = "metric";
             int numDays = 7;
+            String appid = "e43c36ddd2750074c50b180f1d6a5bde";
 
             try {
                 // Construct the URL for the OpenWeatherMap query
@@ -276,17 +277,19 @@ public class ForecastFragment extends Fragment {
                 final String FORMAT_PARAM = "mode";
                 final String UNITS_PARAM = "units";
                 final String DAYS_PARAM = "cnt";
-                final String APPID_PARAM = "APPID";
+                final String APPID_PARAM = "appid";
 
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                         .appendQueryParameter(QUERY_PARAM, params[0])
                         .appendQueryParameter(FORMAT_PARAM, format)
                         .appendQueryParameter(UNITS_PARAM, units)
                         .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
-                        .appendQueryParameter(APPID_PARAM, BuildConfig.OPEN_WEATHER_MAP_API_KEY)
+                        .appendQueryParameter(APPID_PARAM, appid)
                         .build();
 
                 URL url = new URL(builtUri.toString());
+
+                //String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=400081&mode=json&units=metric&cnt=7&appid=e43c36ddd2750074c50b180f1d6a5bde";
 
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
